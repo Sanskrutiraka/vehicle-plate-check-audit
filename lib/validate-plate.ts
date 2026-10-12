@@ -20,6 +20,13 @@ export function validatePlate(value: string): PlateValidationResult {
   const match = hasInvalidCharacters
     ? null
     : normalized.match(/^([A-Z]{2})(\d{1,2})([A-Z]{1,3})(\d{1,4})$/)  
+  const bhMatch = hasInvalidCharacters
+    ? null
+    : normalized.match(/^(\d{2})BH(\d{4})([A-Z]{1,2})$/)
+
+  if (bhMatch) {
+    return { valid: true, normalized, state: 'Bharat Series (BH)', rtoCode: null }
+  }
   const stateCode = match?.[1] ?? ''
 
   if (!match || !STATE_CODES[stateCode]) {
