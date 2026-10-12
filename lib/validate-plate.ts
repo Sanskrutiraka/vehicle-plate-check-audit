@@ -15,8 +15,11 @@ const STATE_CODES: Record<string, string> = {
 }
 
 export function validatePlate(value: string): PlateValidationResult {
-  const normalized = value.toUpperCase().replace(/[^A-Z0-9]/g, '')
-  const match = normalized.match(/^([A-Z]{2})(\d{1,2})([A-Z]{1,3})(\d{1,4})$/)
+  const normalized = value.toUpperCase().replace(/[\s-]/g, '')
+  const hasInvalidCharacters = /[^A-Z0-9]/.test(normalized)
+  const match = hasInvalidCharacters
+    ? null
+    : normalized.match(/^([A-Z]{2})(\d{1,2})([A-Z]{1,3})(\d{1,4})$/)  
   const stateCode = match?.[1] ?? ''
 
   if (!match || !STATE_CODES[stateCode]) {
