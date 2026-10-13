@@ -171,6 +171,7 @@ export default function Page() {
               <li>State codes sit in a lookup table instead of being buried in logic.</li>
               <li>The input has a proper label, and the result is announced to screen readers.</li>
               <li>The format-only disclaimer is clear and honest.</li>
+            </ul>
               <h3 className="mt-8 text-sm font-semibold">Lighthouse, before and after</h3>
               <div className="mt-3 overflow-x-auto rounded-xl border border-border">
                 <table className="w-full text-left text-sm">
@@ -186,7 +187,7 @@ export default function Page() {
                     <tr className="border-t border-border/70"><td className="px-4 py-3">Desktop performance</td><td className="px-4 py-3">90</td><td className="px-4 py-3">100</td></tr>
                     <tr className="border-t border-border/70"><td className="px-4 py-3">Accessibility</td><td className="px-4 py-3">100</td><td className="px-4 py-3">100</td></tr>
                     <tr className="border-t border-border/70"><td className="px-4 py-3">Best practices</td><td className="px-4 py-3">100</td><td className="px-4 py-3">100</td></tr>
-                    <tr className="border-t border-border/70"><td className="px-4 py-3">SEO</td><td className="px-4 py-3">not recorded</td><td className="px-4 py-3">100</td></tr>
+                    <tr className="border-t border-border/70"><td className="px-4 py-3">SEO</td><td className="px-4 py-3">100</td><td className="px-4 py-3">100</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -195,7 +196,6 @@ export default function Page() {
                 so these changes are within normal variation. My fixes were about correctness, not speed. The point worth noting:
                 Lighthouse scored accessibility and best practices at 100 before and after, and it never saw the 12 validator bugs.
               </p>
-            </ul>
 
             <h3 className="mt-8 text-sm font-semibold">A mistake of my own</h3>
             <p className="mt-3 text-sm leading-6 text-muted-foreground">
