@@ -40,4 +40,11 @@ describe('validatePlate', () => {
   it('does not crash on null', () => {
     expect(() => validatePlate(null as unknown as string)).not.toThrow()
   })
+    it('reports the correct RTO code for a standard plate', () => {
+    expect(validatePlate('MH12AB1234').rtoCode).toBe('12')
+  })
+
+  it('reports the correct RTO code for a Delhi plate', () => {
+    expect(validatePlate('DL1CAB1234').rtoCode).toBe('1C')
+  })
 })
