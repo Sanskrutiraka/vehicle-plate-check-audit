@@ -15,6 +15,9 @@ const STATE_CODES: Record<string, string> = {
 }
 
 export function validatePlate(value: string): PlateValidationResult {
+  if (typeof value !== 'string') {
+  return { valid: false, normalized: '', state: null, rtoCode: null }
+  }
   const normalized = value.toUpperCase().replace(/[\s-]/g, '')
   const hasInvalidCharacters = /[^A-Z0-9]/.test(normalized)
   const match = hasInvalidCharacters
