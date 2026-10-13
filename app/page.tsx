@@ -5,6 +5,54 @@ import { ArrowRight, Check, CircleAlert, FileCheck2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { validatePlate, type PlateValidationResult } from '@/lib/validate-plate'
 
+const findings = [
+  {
+    problem: 'Silently deleted unknown characters, so bad input counted as valid',
+    example: 'MH12AB1234!!!, Cyrillic lookalike letters',
+    fix: 'Reject anything except letters, digits, spaces and hyphens',
+  },
+  {
+    problem: 'BH-series plates rejected',
+    example: '22BH1234AA',
+    fix: 'Added the BH-series pattern',
+  },
+  {
+    problem: 'Old plates with no series letters rejected',
+    example: 'MH121234',
+    fix: 'Series letters are now optional (0 to 3)',
+  },
+  {
+    problem: 'RTO code 00 and registration number 0000 accepted',
+    example: 'MH00AB1234, MH12AB0000',
+    fix: 'Treated as invalid (a design rule I chose)',
+  },
+  {
+    problem: 'New Telangana state code TG missing',
+    example: 'TG09AB1234',
+    fix: 'Added TG, kept TS for older plates',
+  },
+  {
+    problem: 'Legacy Uttarakhand code UA missing',
+    example: 'UA07AB1234',
+    fix: 'Added UA as a legacy code',
+  },
+  {
+    problem: 'Letters I and O accepted in the series',
+    example: 'MH12ABI1234',
+    fix: 'Excluded I and O from the series letters',
+  },
+  {
+    problem: 'Crash on null input',
+    example: 'null',
+    fix: 'Non-text input now returns invalid',
+  },
+  {
+    problem: 'UI showed a blank RTO code for BH plates',
+    example: '22BH1234AA',
+    fix: 'Now shows Not applicable (BH series)',
+  },
+]
+
 export default function Page() {
   const [plate, setPlate] = useState('')
   const [result, setResult] = useState<PlateValidationResult | null>(null)
@@ -87,10 +135,66 @@ export default function Page() {
           </section>
 
           <section className="mt-16 max-w-3xl border-t border-border pt-8" aria-labelledby="audit-heading">
-            <div className="flex items-baseline justify-between gap-4">
-              <h2 id="audit-heading" className="text-lg font-semibold tracking-tight">Audit report</h2>
-              <span className="text-sm text-muted-foreground">Coming soon</span>
+            <h2 id="audit-heading" className="text-lg font-semibold tracking-tight">Audit report</h2>
+            <p className="mt-3 text-sm leading-6 text-muted-foreground">
+              v0 generated this page and its validator in about a minute. I then wrote 29 test cases for Indian plate formats.
+              On the first run 17 passed and 12 failed. Every fix is its own commit. After the fixes there are 31 tests (two
+              added for RTO codes) and all pass.
+            </p>
+
+            <h3 className="mt-8 text-sm font-semibold">What went wrong</h3>
+            <div className="mt-3 overflow-x-auto rounded-xl border border-border">
+              <table className="w-full text-left text-sm">
+                <thead className="bg-muted/50 text-xs text-muted-foreground">
+                  <tr>
+                    <th scope="col" className="px-4 py-3 font-medium">What went wrong</th>
+                    <th scope="col" className="px-4 py-3 font-medium">Example</th>
+                    <th scope="col" className="px-4 py-3 font-medium">Fix</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {findings.map((item) => (
+                    <tr key={item.problem} className="border-t border-border/70 align-top">
+                      <td className="px-4 py-3">{item.problem}</td>
+                      <td className="px-4 py-3 font-mono text-xs">{item.example}</td>
+                      <td className="px-4 py-3">{item.fix}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
+
+            <h3 className="mt-8 text-sm font-semibold">What it got right</h3>
+            <ul className="mt-3 list-disc space-y-1 pl-5 text-sm leading-6 text-muted-foreground">
+              <li>The validator is a separate, pure function, which made it easy to test.</li>
+              <li>Case, spaces and hyphens were handled correctly from the start.</li>
+              <li>State codes sit in a lookup table instead of being buried in logic.</li>
+              <li>The input has a proper label, and the result is announced to screen readers.</li>
+              <li>The format-only disclaimer is clear and honest.</li>
+              <li>Lighthouse baseline (three runs, middle value): mobile performance 95, desktop performance 90, accessibility 100, best practices 100.</li>
+            </ul>
+
+            <h3 className="mt-8 text-sm font-semibold">A mistake of my own</h3>
+            <p className="mt-3 text-sm leading-6 text-muted-foreground">
+              One test I wrote was wrong. I expected the Delhi plate DL1CAB1234 to have RTO code 1C. Checking sources showed the
+              RTO is 1 and the C belongs to the series, so the validator was right and I corrected the test.
+            </p>
+
+            <h3 className="mt-8 text-sm font-semibold">Known gaps</h3>
+            <p className="mt-3 text-sm leading-6 text-muted-foreground">
+              Andaman and Nicobar (AN) and the legacy DN code are not in the state list yet. This tool checks format only.
+            </p>
+
+            <p className="mt-8 text-sm">
+              <a
+                href="https://github.com/Sanskrutiraka/vehicle-plate-check-audit/commits/main"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-4"
+              >
+                See every commit on GitHub
+              </a>
+            </p>
           </section>
         </div>
 
