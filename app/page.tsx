@@ -104,9 +104,9 @@ export default function Page() {
                 placeholder="e.g. MH 12 AB 1234"
                 autoComplete="off"
                 spellCheck="false"
-                className="h-12 min-w-0 flex-1 rounded-lg border border-input bg-background px-4 font-mono text-base uppercase tracking-wider outline-none transition placeholder:font-sans placeholder:tracking-normal focus:border-primary focus:ring-2 focus:ring-primary/15"
+                className="h-14 min-w-0 sm:flex-1 rounded-lg border border-input bg-background px-4 font-mono text-base uppercase tracking-wider outline-none transition placeholder:font-sans placeholder:tracking-normal focus:border-primary focus:ring-2 focus:ring-primary/15"
               />
-              <Button type="submit" className="h-12 px-6" disabled={!plate.trim()}>
+              <Button type="submit" className="h-14 px-6" disabled={!plate.trim()}>
                 Check <ArrowRight data-icon="inline-end" />
               </Button>
             </form>
@@ -198,7 +198,7 @@ export default function Page() {
           </section>
         </div>
 
-        <footer className="border-t border-border/70 py-6 text-xs text-muted-foreground">
+        <footer className="border-t border-border/70 py-6 text-center text-xs text-muted-foreground">
           Built by Sanskruti Raka ·{' '}
           <a
             href="https://github.com/Sanskrutiraka"
