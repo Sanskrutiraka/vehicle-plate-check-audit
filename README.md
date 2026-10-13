@@ -2,13 +2,9 @@
 
 **AI generated this app in about a minute. I tested it, found 12 failing cases, and fixed them one commit at a time.**
 
-[Live site](PASTE YOUR LIVE ADDRESS HERE) · [Test cases](lib/validate-plate.test.ts) · [Commit history](https://github.com/Sanskrutiraka/vehicle-plate-check-audit/commits/main)
+[Live site](https://vehicle-plate-check-audit.vercel.app/) · [Test cases](lib/validate-plate.test.ts) · [Commit history](https://github.com/Sanskrutiraka/vehicle-plate-check-audit/commits/main)
 
 What this shows: I don't treat AI output as finished work. I measure it, check domain rules against sources, fix bugs in small reviewable commits, and report my own mistakes too.
-
-I let v0 generate a small Indian vehicle plate checker, then audited it like I would review code on a team: wrote tests first, recorded what failed, and fixed each problem in its own commit.
-
-**Live site:** https://vehicle-plate-check-audit.vercel.app/
 
 ## Result
 
@@ -65,8 +61,8 @@ The validator was a separate pure function (easy to test), state codes lived in 
 | BH plate, blank RTO (before) | ![Blank RTO](docs/finding-bh-blank-rto.png) |
 | BH plate, fixed | ![Fixed RTO](docs/fix-bh-rto-message.png) |
 | Mobile input bug | ![Mobile input](docs/finding-mobile-input.png) |
-| Lighthouse | ![Lighthouse](docs/lighthouse-before.png) |
-| Lighthouse | ![Lighthouse](docs/lighthouse-after.png) |
+| Lighthouse (before) | ![Lighthouse before](docs/lighthouse-before.png) |
+| Lighthouse (after) | ![Lighthouse after](docs/lighthouse-after.png) |
 
 ## A note on sources
 
