@@ -45,6 +45,6 @@ describe('validatePlate', () => {
   })
 
   it('reports the correct RTO code for a Delhi plate', () => {
-    expect(validatePlate('DL1CAB1234').rtoCode).toBe('1C')
+    expect(validatePlate('DL1CAB1234').rtoCode).toBe('01')
   })
 })
