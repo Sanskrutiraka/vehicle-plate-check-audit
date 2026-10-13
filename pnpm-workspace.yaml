@@ -3,3 +3,6 @@ pmOnFail: ignore
 minimumReleaseAgeExclude:
   - '@next/*'
   - next
+  - '@vitest/mocker@5.0.4'
+  - '@vitest/spy@5.0.4'
+  - vitest@5.0.4
