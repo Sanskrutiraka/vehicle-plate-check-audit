@@ -32,6 +32,9 @@ export function validatePlate(value: string): PlateValidationResult {
   if (!match || !STATE_CODES[stateCode]) {
     return { valid: false, normalized, state: null, rtoCode: null }
   }
+  if (Number(match[2]) === 0 || Number(match[4]) === 0) {
+  return { valid: false, normalized, state: null, rtoCode: null }
+  }
 
   return {
     valid: true,
