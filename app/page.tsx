@@ -51,6 +51,16 @@ const findings = [
     example: '22BH1234AA',
     fix: 'Now shows Not applicable (BH series)',
   },
+    {
+    problem: 'UI showed a blank RTO code for BH plates',
+    example: '22BH1234AA',
+    fix: 'Now shows Not applicable (BH series)',
+  },
+  {
+    problem: 'Input collapsed to a thin bar on phone-width screens',
+    example: 'Any phone-width screen',
+    fix: 'Fixed the layout so the input keeps its height on mobile',
+  },
 ]
 
 export default function Page() {
@@ -201,6 +211,12 @@ export default function Page() {
             <p className="mt-3 text-sm leading-6 text-muted-foreground">
               One test I wrote was wrong. I expected the Delhi plate DL1CAB1234 to have RTO code 1C. Checking sources showed the
               RTO is 1 and the C belongs to the series, so the validator was right and I corrected the test.
+            </p>
+
+            <p className="mt-3 text-sm leading-6 text-muted-foreground">
+              Another was in my setup. I installed the test tool with npm in a pnpm project, which left the lockfile out of date
+              and made every Vercel build fail until I ran pnpm install. The live site kept serving the last good build, so
+              visitors saw nothing broken, but my fixes were not live until I corrected it.
             </p>
 
             <h3 className="mt-8 text-sm font-semibold">Known gaps</h3>
