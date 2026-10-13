@@ -171,7 +171,30 @@ export default function Page() {
               <li>State codes sit in a lookup table instead of being buried in logic.</li>
               <li>The input has a proper label, and the result is announced to screen readers.</li>
               <li>The format-only disclaimer is clear and honest.</li>
-              <li>Lighthouse baseline (three runs, middle value): mobile performance 95, desktop performance 90, accessibility 100, best practices 100.</li>
+              <h3 className="mt-8 text-sm font-semibold">Lighthouse, before and after</h3>
+              <div className="mt-3 overflow-x-auto rounded-xl border border-border">
+                <table className="w-full text-left text-sm">
+                  <thead className="bg-muted/50 text-xs text-muted-foreground">
+                    <tr>
+                      <th scope="col" className="px-4 py-3 font-medium">Score</th>
+                      <th scope="col" className="px-4 py-3 font-medium">Before</th>
+                      <th scope="col" className="px-4 py-3 font-medium">After</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-t border-border/70"><td className="px-4 py-3">Mobile performance</td><td className="px-4 py-3">95</td><td className="px-4 py-3">96</td></tr>
+                    <tr className="border-t border-border/70"><td className="px-4 py-3">Desktop performance</td><td className="px-4 py-3">90</td><td className="px-4 py-3">100</td></tr>
+                    <tr className="border-t border-border/70"><td className="px-4 py-3">Accessibility</td><td className="px-4 py-3">100</td><td className="px-4 py-3">100</td></tr>
+                    <tr className="border-t border-border/70"><td className="px-4 py-3">Best practices</td><td className="px-4 py-3">100</td><td className="px-4 py-3">100</td></tr>
+                    <tr className="border-t border-border/70"><td className="px-4 py-3">SEO</td><td className="px-4 py-3">not recorded</td><td className="px-4 py-3">100</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                Middle value of three runs each. Performance varies between runs (my first three mobile runs ranged from 88 to 98),
+                so these changes are within normal variation. My fixes were about correctness, not speed. The point worth noting:
+                Lighthouse scored accessibility and best practices at 100 before and after, and it never saw the 12 validator bugs.
+              </p>
             </ul>
 
             <h3 className="mt-8 text-sm font-semibold">A mistake of my own</h3>
