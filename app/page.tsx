@@ -147,7 +147,7 @@ export default function Page() {
           <section className="mt-16 max-w-3xl border-t border-border pt-8" aria-labelledby="audit-heading">
             <h2 id="audit-heading" className="text-lg font-semibold tracking-tight">Audit report</h2>
             <p className="mt-3 text-sm leading-6 text-muted-foreground">
-              v0 generated this page and its validator in about a minute. I then wrote 29 test cases for Indian plate formats.
+              v0 generated this page and its validator in about a minute. I then ran 29 test cases for Indian plate formats.
               On the first run 17 passed and 12 failed. Every fix is its own commit. After the fixes there are 31 tests (two
               added for RTO codes) and all pass.
             </p>
@@ -209,7 +209,7 @@ export default function Page() {
 
             <h3 className="mt-8 text-sm font-semibold">A mistake of my own</h3>
             <p className="mt-3 text-sm leading-6 text-muted-foreground">
-              One test I wrote was wrong. I expected the Delhi plate DL1CAB1234 to have RTO code 1C. Checking sources showed the
+              One test in my plan was wrong. I expected the Delhi plate DL1CAB1234 to have RTO code 1C. Checking sources showed the
               RTO is 1 and the C belongs to the series, so the validator was right and I corrected the test.
             </p>
 
