@@ -22,10 +22,10 @@ export function validatePlate(value: string): PlateValidationResult {
   const hasInvalidCharacters = /[^A-Z0-9]/.test(normalized)
   const match = hasInvalidCharacters
     ? null
-    : normalized.match(/^([A-Z]{2})(\d{1,2})([A-Z]{0,3})(\d{1,4})$/)  
+    : normalized.match(/^([A-Z]{2})(\d{1,2})([A-HJ-NP-Z]{0,3})(\d{1,4})$/)  
   const bhMatch = hasInvalidCharacters
     ? null
-    : normalized.match(/^(\d{2})BH(\d{4})([A-Z]{1,2})$/)
+    : normalized.match(/^(\d{2})BH(\d{4})([A-HJ-NP-Z]{1,2})$/)
 
   if (bhMatch) {
     return { valid: true, normalized, state: 'Bharat Series (BH)', rtoCode: null }
