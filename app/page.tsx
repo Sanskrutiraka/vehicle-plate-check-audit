@@ -77,7 +77,7 @@ export default function Page() {
                 {result.valid && (
                   <dl className="mt-5 grid grid-cols-2 gap-4 border-t border-border/70 pt-5">
                     <div><dt className="text-xs text-muted-foreground">State</dt><dd className="mt-1 text-sm font-medium">{result.state}</dd></div>
-                    <div><dt className="text-xs text-muted-foreground">RTO code</dt><dd className="mt-1 font-mono text-sm font-semibold">{result.rtoCode}</dd></div>
+                    <div><dt className="text-xs text-muted-foreground">RTO code</dt><dd className="mt-1 font-mono text-sm font-semibold">{result.rtoCode ?? 'Not applicable (BH series)'}</dd></div>
                   </dl>
                 )}
               </div>
